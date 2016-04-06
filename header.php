@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html <?php//TODO:check what is -> language_attributes(); ?>>
+<html <?php language_attributes(); ?>>
 	<!--TODO: why that? -> head profile="http://gmpg.org/xfn/11"-->
 	<head>
 		<meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />

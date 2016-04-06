@@ -1,48 +1,49 @@
 <?php
-//JUST FOR TESTS
+//criado por Francisco Matelli Matulovic
+//data-tag: 2016-04-06
+
 /*function reset_configurations () {
 	delete_user_meta(get_current_user_id(), "pomodoroAtivo");
 }
 */
 
-add_action('init', 'theme_scripts');
 
-function theme_scripts() {
-	wp_enqueue_script("theme-scripts", get_bloginfo("template_directory")."/theme-scripts.js");
-	wp_enqueue_script("jquery-color", get_bloginfo("template_directory")."/jquery.color-2.1.2.min.js");
-	//NOT TESTED wp_enqueue_script("theme-scripts", get_bloginfo("template_directory")."/bootstrap/bootstrap.js");
-	//var_dump(wp_enqueue_script("sistema-pomodoros-js"));die;
-}
+/**/
+add_action('init', 'theme_scripts');
+add_action('login_form_middle', 'add_lost_password_link' );
+add_action('wp_logout','go_home');
+add_action('init', 'myStartSession', 1);
+add_action('wp_logout', 'myEndSession');
+add_action('wp_login', 'myEndSession');
 
 /**/
 add_filter('show_admin_bar', '__return_false'); 
-/**/
 
-add_action( 'login_form_middle', 'add_lost_password_link' );
+/**/
+function theme_scripts() {
+	//styles
+	wp_enqueue_style("boostrap-css", get_bloginfo("template_directory")."/css/bootstrap.min.css");
+	//scripts
+	wp_enqueue_script("projectimer-theme-scripts", get_bloginfo("template_directory")."/js/projectimer-theme-scripts.js");
+	wp_enqueue_script("jquery-color", get_bloginfo("template_directory")."/js/jquery.color-2.1.2.min.js");
+	wp_enqueue_script("boostrap-js", get_bloginfo("template_directory")."/js/bootstrap.min.js");
+}
+
 function add_lost_password_link() {
     return '<a href="/wp-login.php?action=lostpassword">Esqueci a senha!</a>';
 }
-
-/**/
-add_action('wp_logout','go_home');
 
 function go_home(){
   wp_redirect( home_url() );
   exit();
 }
 
-
-/*SESSION PARA NAO PERDER DADOS DO FORMULARIO*/
-add_action('init', 'myStartSession', 1);
-add_action('wp_logout', 'myEndSession');
-add_action('wp_login', 'myEndSession');
-
 function myStartSession() {
+	//SESSION PARA NAO PERDER DADOS DO FORMULARIO
     if(!session_id()) {
         session_start();
         
-    }
- 
+    } 
 }
 
 function myEndSession() {
