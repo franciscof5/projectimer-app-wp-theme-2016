@@ -46,15 +46,13 @@ jQuery().ready(function($) {
 
 		//$( ".icone-legenda" ).slideUp(400);
 	});*/
-	$( "#login_login" ).click(function() {
-		$( "#loginlogbox" ).toggle("slow");
-	});
-	$( "#settings_button" ).click(function() {
+	
+	/*2016-09-30now in plugin $( "#settings_button" ).click(function() {
 		$( "#projectimer_settingsbox" ).toggle("slow");
-	});
-	$( ".button_close" ).click(function() {
+	});$( ".button_close" ).click(function() {
 		$( "#projectimer_settingsbox" ).hide("slow");
-	});
+	});*/
+	
 	if($("#loading-message").length) {
 		i = 0;
 		loading_animated = setInterval(function() {

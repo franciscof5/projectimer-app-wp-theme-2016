@@ -1,155 +1,226 @@
 <?php
-
 /**
- * Template Name: BuddyPress - Activity Directory
+ * BuddyPress Activity templates
+ *
+ * @since 2.3.0
  *
  * @package BuddyPress
- * @subpackage Theme
+ * @subpackage bp-legacy
  */
 
-get_header( 'buddypress' ); ?>
+/**
+ * Fires before the activity directory listing.
+ *
+ * @since 1.5.0
+ */
+get_header();
+do_action( 'bp_before_directory_activity' ); ?>
+<br style="clear:both;" />
+<div id="buddypress">
 
-	<?php do_action( 'bp_before_directory_activity_page' ); ?>
+	<?php
 
-	<div id="content">
-		<div class="padder">
+	/**
+	 * Fires before the activity directory display content.
+	 *
+	 * @since 1.2.0
+	 */
+	do_action( 'bp_before_directory_activity_content' ); ?>
 
-			<?php do_action( 'bp_before_directory_activity' ); ?>
+	<?php if ( is_user_logged_in() ) : ?>
 
-			<?php /*if ( !is_user_logged_in() ) : ?>
+		<?php bp_get_template_part( 'activity/post-form' ); ?>
 
-				<h3><?php _e( 'Site Activity', 'buddypress' ); ?></h3>
+	<?php endif; ?>
 
-			<?php endif; ?>
+	<?php
 
-			<?php do_action( 'bp_before_directory_activity_content' ); ?>
+	/**
+	 * Fires towards the top of template pages for notice display.
+	 *
+	 * @since 1.0.0
+	 */
+	do_action( 'template_notices' ); ?>
+
+	<div class="item-list-tabs activity-type-tabs" role="navigation">
+		<ul>
+			<?php
+
+			/**
+			 * Fires before the listing of activity type tabs.
+			 *
+			 * @since 1.2.0
+			 */
+			do_action( 'bp_before_activity_type_tab_all' ); ?>
+
+			<li class="selected" id="activity-all"><a href="<?php bp_activity_directory_permalink(); ?>" title="<?php esc_attr_e( 'The public activity for everyone on this site.', 'buddypress' ); ?>"><?php printf( __( 'All Members %s', 'buddypress' ), '<span>' . bp_get_total_member_count() . '</span>' ); ?></a></li>
 
 			<?php if ( is_user_logged_in() ) : ?>
 
-				<?php locate_template( array( 'activity/post-form.php'), true ); ?>
+				<?php
 
-			<?php endif; ?>
+				/**
+				 * Fires before the listing of friends activity type tab.
+				 *
+				 * @since 1.2.0
+				 */
+				do_action( 'bp_before_activity_type_tab_friends' ); ?>
 
-			<?php do_action( 'template_notices' ); */?>
+				<?php if ( bp_is_active( 'friends' ) ) : ?>
 
-			<!--div class="item-list-tabs activity-type-tabs" role="navigation">
-				<ul>
-					<?php do_action( 'bp_before_activity_type_tab_all' ); ?>
+					<?php if ( bp_get_total_friend_count( bp_loggedin_user_id() ) ) : ?>
 
-					<li class="selected" id="activity-all"><a href="<?php bp_activity_directory_permalink(); ?>" title="<?php _e( 'The public activity for everyone on this site.', 'buddypress' ); ?>"><?php printf( __( 'All Members <span>%s</span>', 'buddypress' ), bp_get_total_member_count() ); ?></a></li>
-
-					<?php if ( is_user_logged_in() ) : ?>
-
-						<?php do_action( 'bp_before_activity_type_tab_friends' ); ?>
-
-						<?php if ( bp_is_active( 'friends' ) ) : ?>
-
-							<?php if ( bp_get_total_friend_count( bp_loggedin_user_id() ) ) : ?>
-
-								<li id="activity-friends"><a href="<?php echo bp_loggedin_user_domain() . bp_get_activity_slug() . '/' . bp_get_friends_slug() . '/'; ?>" title="<?php _e( 'The activity of my friends only.', 'buddypress' ); ?>"><?php printf( __( 'My Friends <span>%s</span>', 'buddypress' ), bp_get_total_friend_count( bp_loggedin_user_id() ) ); ?></a></li>
-
-							<?php endif; ?>
-
-						<?php endif; ?>
-
-						<?php do_action( 'bp_before_activity_type_tab_groups' ); ?>
-
-						<?php if ( bp_is_active( 'groups' ) ) : ?>
-
-							<?php if ( bp_get_total_group_count_for_user( bp_loggedin_user_id() ) ) : ?>
-
-								<li id="activity-groups"><a href="<?php echo bp_loggedin_user_domain() . bp_get_activity_slug() . '/' . bp_get_groups_slug() . '/'; ?>" title="<?php _e( 'The activity of groups I am a member of.', 'buddypress' ); ?>"><?php printf( __( 'My Groups <span>%s</span>', 'buddypress' ), bp_get_total_group_count_for_user( bp_loggedin_user_id() ) ); ?></a></li>
-
-							<?php endif; ?>
-
-						<?php endif; ?>
-
-						<?php do_action( 'bp_before_activity_type_tab_favorites' ); ?>
-
-						<?php if ( bp_get_total_favorite_count_for_user( bp_loggedin_user_id() ) ) : ?>
-
-							<li id="activity-favorites"><a href="<?php echo bp_loggedin_user_domain() . bp_get_activity_slug() . '/favorites/'; ?>" title="<?php _e( "The activity I've marked as a favorite.", 'buddypress' ); ?>"><?php printf( __( 'My Favorites <span>%s</span>', 'buddypress' ), bp_get_total_favorite_count_for_user( bp_loggedin_user_id() ) ); ?></a></li>
-
-						<?php endif; ?>
-
-						<?php do_action( 'bp_before_activity_type_tab_mentions' ); ?>
-
-						<li id="activity-mentions"><a href="<?php echo bp_loggedin_user_domain() . bp_get_activity_slug() . '/mentions/'; ?>" title="<?php _e( 'Activity that I have been mentioned in.', 'buddypress' ); ?>"><?php _e( 'Mentions', 'buddypress' ); ?><?php if ( bp_get_total_mention_count_for_user( bp_loggedin_user_id() ) ) : ?> <strong><?php printf( __( '<span>%s new</span>', 'buddypress' ), bp_get_total_mention_count_for_user( bp_loggedin_user_id() ) ); ?></strong><?php endif; ?></a></li>
+						<li id="activity-friends"><a href="<?php echo bp_loggedin_user_domain() . bp_get_activity_slug() . '/' . bp_get_friends_slug() . '/'; ?>" title="<?php esc_attr_e( 'The activity of my friends only.', 'buddypress' ); ?>"><?php printf( __( 'My Friends %s', 'buddypress' ), '<span>' . bp_get_total_friend_count( bp_loggedin_user_id() ) . '</span>' ); ?></a></li>
 
 					<?php endif; ?>
 
-					<?php do_action( 'bp_activity_type_tabs' ); ?>
-				</ul>
-			</div><!-- .item-list-tabs -->
+				<?php endif; ?>
 
-			<div class="item-list-tabs no-ajax" id="subnav" role="navigation">
-				<ul>
-					<li class="feed" style="float:right"><a href="<?php bp_sitewide_activity_feed_link(); ?>" title="<?php _e( 'RSS Feed', 'buddypress' ); ?>"><?php _e( 'RSS', 'buddypress' ); ?></a></li>
+				<?php
 
-					<?php do_action( 'bp_activity_syndication_options' ); ?>
+				/**
+				 * Fires before the listing of groups activity type tab.
+				 *
+				 * @since 1.2.0
+				 */
+				do_action( 'bp_before_activity_type_tab_groups' ); ?>
 
-					<!--li id="activity-filter-select" class="last">
-						<label for="activity-filter-by"><?php _e( 'Show:', 'buddypress' ); ?></label>
-						<select id="activity-filter-by">
-							<option value="-1"><?php _e( 'Everything', 'buddypress' ); ?></option>
-							<option value="activity_update"><?php _e( 'Updates', 'buddypress' ); ?></option>
+				<?php if ( bp_is_active( 'groups' ) ) : ?>
 
-							<?php if ( bp_is_active( 'blogs' ) ) : ?>
+					<?php if ( bp_get_total_group_count_for_user( bp_loggedin_user_id() ) ) : ?>
 
-								<option value="new_blog_post"><?php _e( 'Posts', 'buddypress' ); ?></option>
-								<option value="new_blog_comment"><?php _e( 'Comments', 'buddypress' ); ?></option>
+						<li id="activity-groups"><a href="<?php echo bp_loggedin_user_domain() . bp_get_activity_slug() . '/' . bp_get_groups_slug() . '/'; ?>" title="<?php esc_attr_e( 'The activity of groups I am a member of.', 'buddypress' ); ?>"><?php printf( __( 'My Groups %s', 'buddypress' ), '<span>' . bp_get_total_group_count_for_user( bp_loggedin_user_id() ) . '</span>' ); ?></a></li>
 
-							<?php endif; ?>
+					<?php endif; ?>
 
-							<?php if ( bp_is_active( 'forums' ) ) : ?>
+				<?php endif; ?>
 
-								<option value="new_forum_topic"><?php _e( 'Forum Topics', 'buddypress' ); ?></option>
-								<option value="new_forum_post"><?php _e( 'Forum Replies', 'buddypress' ); ?></option>
+				<?php
 
-							<?php endif; ?>
+				/**
+				 * Fires before the listing of favorites activity type tab.
+				 *
+				 * @since 1.2.0
+				 */
+				do_action( 'bp_before_activity_type_tab_favorites' ); ?>
 
-							<?php if ( bp_is_active( 'groups' ) ) : ?>
+				<?php if ( bp_get_total_favorite_count_for_user( bp_loggedin_user_id() ) ) : ?>
 
-								<option value="created_group"><?php _e( 'New Groups', 'buddypress' ); ?></option>
-								<option value="joined_group"><?php _e( 'Group Memberships', 'buddypress' ); ?></option>
+					<li id="activity-favorites"><a href="<?php echo bp_loggedin_user_domain() . bp_get_activity_slug() . '/favorites/'; ?>" title="<?php esc_attr_e( "The activity I've marked as a favorite.", 'buddypress' ); ?>"><?php printf( __( 'My Favorites %s', 'buddypress' ), '<span>' . bp_get_total_favorite_count_for_user( bp_loggedin_user_id() ) . '</span>' ); ?></a></li>
 
-							<?php endif; ?>
+				<?php endif; ?>
 
-							<?php if ( bp_is_active( 'friends' ) ) : ?>
+				<?php if ( bp_activity_do_mentions() ) : ?>
 
-								<option value="friendship_accepted,friendship_created"><?php _e( 'Friendships', 'buddypress' ); ?></option>
+					<?php
 
-							<?php endif; ?>
+					/**
+					 * Fires before the listing of mentions activity type tab.
+					 *
+					 * @since 1.2.0
+					 */
+					do_action( 'bp_before_activity_type_tab_mentions' ); ?>
 
-							<option value="new_member"><?php _e( 'New Members', 'buddypress' ); ?></option>
+					<li id="activity-mentions"><a href="<?php echo bp_loggedin_user_domain() . bp_get_activity_slug() . '/mentions/'; ?>" title="<?php esc_attr_e( 'Activity that I have been mentioned in.', 'buddypress' ); ?>"><?php _e( 'Mentions', 'buddypress' ); ?><?php if ( bp_get_total_mention_count_for_user( bp_loggedin_user_id() ) ) : ?> <strong><span><?php printf( _nx( '%s new', '%s new', bp_get_total_mention_count_for_user( bp_loggedin_user_id() ), 'Number of new activity mentions', 'buddypress' ), bp_get_total_mention_count_for_user( bp_loggedin_user_id() ) ); ?></span></strong><?php endif; ?></a></li>
 
-							<?php do_action( 'bp_activity_filter_options' ); ?>
+				<?php endif; ?>
 
-						</select>
-					</li-->
-				</ul>
-			</div><!-- .item-list-tabs -->
-			
-			<?php do_action( 'bp_before_directory_activity_list' ); ?>
+			<?php endif; ?>
 
-			<div class="activity" role="main">
+			<?php
 
-				<?php locate_template( array( 'activity/activity-loop.php' ), true ); ?>
+			/**
+			 * Fires after the listing of activity type tabs.
+			 *
+			 * @since 1.2.0
+			 */
+			do_action( 'bp_activity_type_tabs' ); ?>
+		</ul>
+	</div><!-- .item-list-tabs -->
 
-			</div><!-- .activity -->
+	<div class="item-list-tabs no-ajax" id="subnav" role="navigation">
+		<ul>
+			<li class="feed"><a href="<?php bp_sitewide_activity_feed_link(); ?>" title="<?php esc_attr_e( 'RSS Feed', 'buddypress' ); ?>"><?php _e( 'RSS', 'buddypress' ); ?></a></li>
 
-			<?php do_action( 'bp_after_directory_activity_list' ); ?>
+			<?php
 
-			<?php do_action( 'bp_directory_activity_content' ); ?>
+			/**
+			 * Fires before the display of the activity syndication options.
+			 *
+			 * @since 1.2.0
+			 */
+			do_action( 'bp_activity_syndication_options' ); ?>
 
-			<?php do_action( 'bp_after_directory_activity_content' ); ?>
+			<li id="activity-filter-select" class="last">
+				<label for="activity-filter-by"><?php _e( 'Show:', 'buddypress' ); ?></label>
+				<select id="activity-filter-by">
+					<option value="-1"><?php _e( '&mdash; Everything &mdash;', 'buddypress' ); ?></option>
 
-			<?php do_action( 'bp_after_directory_activity' ); ?>
+					<?php bp_activity_show_filters(); ?>
 
-		</div><!-- .padder -->
-	</div><!-- #content -->
+					<?php
 
-	<?php do_action( 'bp_after_directory_activity_page' ); ?>
+					/**
+					 * Fires inside the select input for activity filter by options.
+					 *
+					 * @since 1.2.0
+					 */
+					do_action( 'bp_activity_filter_options' ); ?>
 
-<?php get_sidebar( 'buddypress' ); ?>
-<?php get_footer( 'buddypress' ); ?>
+				</select>
+			</li>
+		</ul>
+	</div><!-- .item-list-tabs -->
+
+	<?php
+
+	/**
+	 * Fires before the display of the activity list.
+	 *
+	 * @since 1.5.0
+	 */
+	do_action( 'bp_before_directory_activity_list' ); ?>
+
+	<div class="activity">
+
+		<?php bp_get_template_part( 'activity/activity-loop' ); ?>
+
+	</div><!-- .activity -->
+
+	<?php
+
+	/**
+	 * Fires after the display of the activity list.
+	 *
+	 * @since 1.5.0
+	 */
+	do_action( 'bp_after_directory_activity_list' ); ?>
+
+	<?php
+
+	/**
+	 * Fires inside and displays the activity directory display content.
+	 */
+	do_action( 'bp_directory_activity_content' ); ?>
+
+	<?php
+
+	/**
+	 * Fires after the activity directory display content.
+	 *
+	 * @since 1.2.0
+	 */
+	do_action( 'bp_after_directory_activity_content' ); ?>
+
+	<?php
+
+	/**
+	 * Fires after the activity directory listing.
+	 *
+	 * @since 1.5.0
+	 */
+	do_action( 'bp_after_directory_activity' ); ?>
+
+</div>
+
+<?php get_footer(); ?>
