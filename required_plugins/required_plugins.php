@@ -64,8 +64,8 @@ function projectimer_register_required_plugins() {
 		// This presumes that the plugin code is based in the root of the GitHub repository
 		// and not in a subdirectory ('/src') of the repository.
 		array(
-			'name'      => 'Projectimer',
-			'slug'      => 'projectimer',
+			'name'      => 'Projectimer Plugin',
+			'slug'      => 'projectimer-plugin',
 			'force_activation'   => true,
 		),
 		/*
