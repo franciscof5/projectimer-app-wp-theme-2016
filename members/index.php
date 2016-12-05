@@ -11,6 +11,7 @@
  *
  * @since 1.5.0
  */
+ get_header( 'buddypress' );
 do_action( 'bp_before_directory_members_page' ); ?>
 
 <div id="buddypress">

@@ -4,7 +4,7 @@
 //update-dat: 2016-10-07
 
 #
-require_once( dirname( __FILE__ ) . '/required_plugins/required_plugins.php' );
+#require_once( dirname( __FILE__ ) . '/required_plugins/required_plugins.php' );
 
 #
 add_filter('show_admin_bar', '__return_false'); 
@@ -23,6 +23,7 @@ function theme_scripts() {
 	//jquery colors
 	wp_enqueue_script("jquery-color", get_bloginfo("template_directory")."/js/jquery.color-2.1.2.min.js");	
 
+	
 	//jquery ui
 	#wp_enqueue_script("jquery-ui", get_bloginfo("template_directory")."/js/jquery-ui.min.js");
 	#wp_enqueue_style("boostrap-css", get_bloginfo("template_directory")."/css/jquery-ui.min.css");

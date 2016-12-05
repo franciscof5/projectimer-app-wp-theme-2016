@@ -44,7 +44,7 @@
 	
 	//modals
 	do_action( 'projectimer_display_login_modal' );
-	
+	do_action( 'projectimer_display_remove_user_modal' );
 	//
 	if(is_user_logged_in()) { 		
 		do_action( 'projectimer_display_settings_modal' );
@@ -53,6 +53,19 @@
 		<div id="closed_team_warning">
 			<p>Team Admin closed <strong><?php bloginfo("name"); ?></strong>, you must ask to join Team.</p>
 			<p>Create an account to preserve your time and track project statistics.</p>
+			<p> Contact admin: <?php $admin_email =  get_blog_option(get_current_blog_id(), 'admin_email');
+			$admin_user = get_user_by('email', $admin_email);
+			#var_dump($admin_user);
+			$admin_user_id = $admin_user->ID;
+			$admin_user_login = $admin_user->user_login;
+			$admin_user_display_name = $admin_user->display_name;
+			if($admin_user_display_name=="") {
+				$admin_user_display_name = "Team Admin";
+			}
+			#echo bp_core_get_userlink($admin_user_id);
+			$link = 'http://focalizador.com.br/membro/'.$admin_user_login ?>
+				<a href="<?php echo $link; ?>"><?php echo $admin_user_display_name; ?></a>
+			</p>
 		</div>	
 		<?php 
 		get_footer();
