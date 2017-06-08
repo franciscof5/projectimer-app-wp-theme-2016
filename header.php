@@ -20,6 +20,9 @@
 		<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> <?php _e( 'Blog Posts RSS Feed', 'buddypress' ) ?>" href="<?php bloginfo('rss2_url'); ?>" />
 		<link rel="alternate" type="application/atom+xml" title="<?php bloginfo('name'); ?> <?php _e( 'Blog Posts Atom Feed', 'buddypress' ) ?>" href="<?php bloginfo('atom_url'); ?>" />
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
+		
+		
+
 		<!--link href='http://fonts.googleapis.com/css?family=Lilita+One' rel='stylesheet' type='text/css'-->
 		<!-- Bootstrap (JS is on footer) -->
     	<!--link href="<?php //bloginfo('stylesheet_directory'); ?>/bootstrap/bootstrap.min.css" rel="stylesheet"-->
