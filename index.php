@@ -17,19 +17,19 @@ function get_user_subscription($user_id, $domain) {
 	 echo "<pre>"; print_r($wpdb); echo "</pre>";
 	
 	$results = $wpdb->get_results( $sql, OBJECT );
-	var_dump($results);die;
+	var_dump($results);
+	die;
 				
-			}
-
-			#get_user_subscription(2, $_SERVER['REQUEST_URI']);
-get_header() ?>
+}
+//get_user_subscription(2, $_SERVER['REQUEST_URI']);
+get_header(); ?>
 
 <!--div id="loading-message"><p>.</p><p class="dots">..</p></div-->
-<div class="container-fluid"  style="clear:both;">
+<div class="container-fluid fill" style="clear:both;">
 	<div class="row">
 		<?php
 		
-		$pages = array("focus", "calendar", "ranking", "teams", "me", "members");
+		$pages = array("focus", "calendar", "ranking", "teams", "me", "members", "tv");
 		//var_dump($page);die;
 			
 
