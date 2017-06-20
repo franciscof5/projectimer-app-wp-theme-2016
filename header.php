@@ -48,6 +48,8 @@
 	//modals
 	do_action( 'projectimer_display_login_modal' );
 	do_action( 'projectimer_display_remove_user_modal' );
+	do_action( 'projectimer_display_make_user_admin_modal' );
+	
 	//echo "is_user_member_of_blog:".;die;
 	//
 	if(is_user_logged_in() && is_user_member_of_blog(get_current_user_id())) { 		
