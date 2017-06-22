@@ -31,7 +31,7 @@
 					</div>
 				</div>
 				<div class="row" style="text-align: right;padding-top: -40px;">
-					<a href="/"><?php  _e("Projectimer main site", "projectimer-theme"); ?></a>
+					<a href="/"><?php echo $_SERVER['HTTP_HOST']; //_e("Projectimer main site", "projectimer-theme"); ?></a>
 				</div>
 				<!--div id="footer-info">
 				    <p id="assinatura">Desenvolvido por F5 Sites <br /> <a href="http://www.f5sites.com">www.f5sites.com</a></p>

@@ -27,7 +27,7 @@
 <div class="row">
 	<div class="col-sm-9">
 		<div class="row">
-			<div class="col-xs-4 sidebar_inverted">
+			<div class="col-xs-4 ">
 				<?php
 				#dynamic_sidebar( 'tv-colunm-1' );
 				the_widget("BP_Core_Members_Widget", "Team's Members");
@@ -55,7 +55,7 @@
 		</div>
 
 		<div class="row">
-			<div class="col-xs-4 sidebar_inverted">
+			<div class="col-xs-4 ">
 				<h3>Comunicados</h3>
 				
 				<?php 

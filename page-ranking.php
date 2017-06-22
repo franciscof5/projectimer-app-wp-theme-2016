@@ -144,8 +144,8 @@ jQuery( document ).ready(function() {
 
 Ranking
 	<?php
-	//echo do_shortcode("[top-authors]");
-	the_widget("Top_Authors_Widget");
+	echo do_shortcode("[top-authors]");
+	//the_widget("Top_Authors_Widget");
 	//echo do_shortcode("[top-authors]");
 	
 	?>

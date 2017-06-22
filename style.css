@@ -82,7 +82,10 @@ html, body {
 			background: #093;
 
 		}
-
+.content_nosidebar {
+	width: 90%;
+	margin: 0 auto;
+}
 
 
 /* DAQUI PRA BAIXO LINHA DE CORTE DE QUALIDADE ------------------------------------------*/

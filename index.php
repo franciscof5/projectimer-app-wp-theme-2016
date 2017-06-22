@@ -29,7 +29,7 @@ get_header(); ?>
 	<div class="row">
 		<?php
 		
-		$pages = array("focus", "calendar", "ranking", "teams", "me", "members", "tv");
+		$pages = array("focus", "calendar", "ranking", "teams", "me", "members", "tv", "csv");
 		//var_dump($page);die;
 			
 
