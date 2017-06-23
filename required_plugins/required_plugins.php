@@ -68,6 +68,11 @@ function projectimer_register_required_plugins() {
 			'slug'      => 'projectimer-plugin',
 			'force_activation'   => true,
 		),
+		array(
+			'name'      => 'BuddyPress',
+			'slug'      => 'buddypress',
+			'force_activation'   => true,
+		),
 		/*
 		array(
 			'name'      => 'Top Authors',

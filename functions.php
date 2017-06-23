@@ -4,7 +4,7 @@
 //update-dat: 2016-10-07
 
 #
-#require_once( dirname( __FILE__ ) . '/required_plugins/required_plugins.php' );
+//require_once( dirname( __FILE__ ) . '/required_plugins/required_plugins.php' );
 
 #
 add_filter('show_admin_bar', '__return_false'); 
