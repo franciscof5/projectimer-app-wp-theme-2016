@@ -25,7 +25,7 @@ function get_user_subscription($user_id, $domain) {
 get_header(); ?>
 
 <!--div id="loading-message"><p>.</p><p class="dots">..</p></div-->
-<div class="container-fluid fill" style="clear:both;">
+<div class="container-fluid" style="clear:both;">
 	<div class="row">
 		<?php
 		
