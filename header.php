@@ -1,26 +1,6 @@
 <?php
-
-//Required_plugins was already in functions.php
-if(!function_exists("projectimer_load_scripts")) {
-	$plugin_path = 'projectimer-plugin/projectimer.php';
-	require_once(ABSPATH .'/wp-admin/includes/plugin.php');
-	$result = activate_plugin( $plugin_path );
-	if ( is_wp_error( $result ) ) {
-		echo "Problema ao configurar seu novo site...";
-	}
-}
-if(!function_exists("buddypress")) {
-	//
-	require_once(ABSPATH .'/wp-admin/includes/plugin.php');
-	$plugin_path = 'buddypress/bp-loader.php';
-	$result = activate_plugin( $plugin_path );
-	if ( is_wp_error( $result ) ) {
-		echo "Problema ao configurar seu novo site...";
-	} else {
-		wp_redirect("focus");
-	}
-}
-
+//
+require_once("required_plugins/auto_enable.php");
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> manifest="/wp-content/themes/projectimer-theme/projectimer-theme.appcache">
