@@ -28,7 +28,7 @@ get_header(); ?>
 <div class="container-fluid" style="clear:both;">
 	<div class="row">
 		<?php
-		$pages = array("focus", "calendar", "ranking", "teams", "me", "members", "tv", "csv", "invite");
+		$pages = array("focus", "calendar", "ranking", "teams", "me", "1members", "tv", "csv", "invite");
 			//var_dump($page);die;
 			#locate_template( array( 'home-part.php' ), true );
 			#locate_template( array( "activity/index.php" ), true );
