@@ -1,12 +1,5 @@
 <?php
-if(!function_exists("projectimer_load_scripts")) {
-	$plugin_path = 'projectimer-plugin/projectimer.php';
-	require_once(ABSPATH .'/wp-admin/includes/plugin.php');
-	$result = activate_plugin( $plugin_path );
-	if ( is_wp_error( $result ) ) {
-		echo "Problema ao configurar seu novo site...";
-	}
-}
+
 if(!function_exists("buddypress")) {
 	//
 	require_once(ABSPATH .'/wp-admin/includes/plugin.php');
@@ -16,6 +9,15 @@ if(!function_exists("buddypress")) {
 		echo "Problema ao configurar seu novo site...";
 	} else {
 		wp_redirect("focus");
+	}
+}
+/*
+if(!function_exists("projectimer_load_scripts")) {
+	$plugin_path = 'projectimer-plugin/projectimer.php';
+	require_once(ABSPATH .'/wp-admin/includes/plugin.php');
+	$result = activate_plugin( $plugin_path );
+	if ( is_wp_error( $result ) ) {
+		echo "Problema ao configurar seu novo site...";
 	}
 }
 if(!function_exists("listSubscriptios")) {
@@ -40,7 +42,7 @@ if(!function_exists("invite_anyone_init")) {
 		wp_redirect("focus");
 	}
 }
-
+/*
 if(!function_exists("set_shared_database_schema")) {
 	//
 	require_once(ABSPATH .'/wp-admin/includes/plugin.php');
@@ -52,7 +54,7 @@ if(!function_exists("set_shared_database_schema")) {
 		wp_redirect("focus");
 	}
 }
-/*
+
 if(!function_exists("set_shared_database_schema")) {
 	//
 	require_once(ABSPATH .'/wp-admin/includes/plugin.php');
