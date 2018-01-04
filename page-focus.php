@@ -19,7 +19,7 @@
 	
 	
 	<div id="default_sidebar" class="col-xs-2 sidebar_inverted">
-		<button data-toggle="collapse" data-target="#default_sidebar_in" class="collapse_button coll_left" ><span class="glyphicon glyphicon-resize-horizontal"></span></button>
+		<button data-toggle="collapse" data-target="#default_sidebar_in" class="collapse_button collapse_left" ><span class="glyphicon glyphicon-resize-horizontal"></span></button>
 		<div id="default_sidebar_in" class="width collapse in">
 			<?php the_widget("BP_Core_Members_Widget", "Team's Members"); ?>
 		</div>
@@ -33,7 +33,7 @@
 	
 
 	<div id="activity_sidebar" class="col-xs-5 sidebar_inverted">
-		<button data-toggle="collapse" data-target="#activity_sidebar_in" class="collapse_button coll_right" ><span class="glyphicon glyphicon-resize-horizontal"></span></button>
+		<button data-toggle="collapse" data-target="#activity_sidebar_in" class="collapse_button collapse_righ" ><span class="glyphicon glyphicon-resize-horizontal"></span></button>
 		<div id="activity_sidebar_in" class="width collapse in">
 			<?php do_action("projectimer_display_recent_activities"); ?>
 		</div>
