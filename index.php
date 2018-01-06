@@ -29,11 +29,8 @@ get_header(); ?>
 	<div class="row">
 		<?php
 		$pages = array("focus", "calendar", "ranking", "teams", "me", "1members", "tv", "csv", "invite");
-			//var_dump($page);die;
-			#locate_template( array( 'home-part.php' ), true );
-			#locate_template( array( "activity/index.php" ), true );
-			#locate_template( array( 'default.php' ), true );
-			#die;
+		#var_dump($page);die;
+
 		if(in_array($page, $pages)) {
 			wp_enqueue_script("projectimer-js");
 			locate_template( array( "page-".$page.".php" ), true );
