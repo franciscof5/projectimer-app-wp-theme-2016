@@ -1,12 +1,12 @@
 <style type="text/css">
-	#authors ul li {
+	.top-authors-widget ul li {
 		height: 34px;
 		line-height: 34px;
 		border: 1px solid #CCC;
 		border-radius: 10px;
 		margin: 0 0 5px 0;
 	}
-	#authors ul li a {
+	.top-authors-widget ul li a {
 		color: #666;
 		font-size: 16px;
 		font-weight: 600;
@@ -15,26 +15,30 @@
 		position: absolute;
 
 	}
-	#authors ul li:nth-child(1) { border: 0;}
-	/*#authors ul li div {
+	.top-authors-widget ul li:nth-child(1) { border: 0;}
+	/*.top-authors-widget ul li div {
 		float: left;
 	}*/
-	#authors ul li img {
+	.top-authors-widget ul li img {
 		border-radius: 10px;
+		margin-right: 10px;
 	}
-	#authors ul li div:nth-child(2) {
+	.top-authors-widget ul li div:nth-child(2) {
 		/*margin: -22px 0 0 80px;*/
 	}
-	#authors ul li h3 {
+	.top-authors-widget ul li h3 {
 		margin-top: 30px;
 		width: 80%;
 		white-space: nowrap;
 		overflow: hidden;
 	}
 
-	/*#authors ul li:nth-child(odd) {*/
+	/*.top-authors-widget ul li:nth-child(odd) {*/
 	.ta-preset li:nth-child(odd) {
 		background: #CCC;
+	}
+	.ta-preset li:nth-child(even) {
+		background: #EBEBEB;
 	}
 	/*#authors ul li span {
 		float: right;
@@ -142,11 +146,26 @@ jQuery( document ).ready(function() {
 });
 </script>
 
-Ranking
+<div class="content_nosidebar">
 	<?php
-	echo do_shortcode("[top-authors]");
-	//the_widget("Top_Authors_Widget");
-	//echo do_shortcode("[top-authors]");
-	
+	#ta_widget_init();
+	#echo do_shortcode("[top-authors]");
+	$instance = array(
+		"title" => "Ranking (top 100)",
+		"count" => "100",
+		"exclude_roles" => array(0),#administrator
+		"include_post_types" => array("projectimer_focus"),
+		"preset" => "custom",
+		#"template" => "%gravatar_32% %firstname% %lastname% (%nrofposts%)",
+		"template" => '<li><a href="/colegas/%username%">%gravatar_32%  %firstname% %lastname% (%nrofposts%) </a>  </li>',
+		"before_list" => "<ul class='ta-preset ta-gravatar-list-count'>",
+		"after_list" => "</ul>",
+		"custom_id" => "",
+		"archive_specific" => false); 
+	the_widget("Top_Authors_Widget", $instance,"");
+	//
+	$current_user = wp_get_current_user();
+	echo "Ranking gerado em: ".date('d/m/Y H:i').", via ".$_SERVER["HTTP_HOST"]."/ranking. Usuário: ".$current_user->display_name.", ".$current_user->user_email;
 	?>
 
+</div>

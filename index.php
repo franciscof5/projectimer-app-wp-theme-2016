@@ -4,10 +4,10 @@ $page = basename($_SERVER["REQUEST_URI"]);
 $newactivation = array_key_exists("jmm-join-site", $_GET);
 
 if($page==basename(get_bloginfo("url")) and !$newactivation) {
-	if ( is_user_logged_in() )
+	#if ( is_user_logged_in() )
 	wp_redirect(get_bloginfo('url')."/focus");
-	else
-	wp_redirect(get_bloginfo('url')."/focus");
+	#else
+	#wp_redirect(get_bloginfo('url')."/focus");
 }
 
 /*function get_user_subscription($user_id, $domain) {
